@@ -1,0 +1,117 @@
+// Base class: Person
+class Person {
+  String name;
+  int age;
+
+  // Constructor
+  Person(this.name, this.age);
+
+  // Method: introduce yourself
+  void introduce() {
+    print("Hi, my name is $name and I am $age years old.");
+  }
+}
+
+// Class Visitor (inherits from Person)
+class Visitor extends Person {
+  String animal;
+  double _wasted; // Encapsulated attribute
+
+  // Constructor
+  Visitor(String name, int age, this.animal, this._wasted) : super(name, age);
+
+  // Getter and Setter for spent
+  double get spent => _wasted;
+
+  set spent(double newSpent) {
+    if (newSpent >= 0) {
+      _wasted = newSpent;
+    } else {
+      print("Invalid spent, you can't spend negative numbers");
+    }
+  }
+
+  // Overriding introduce method
+  @override
+  void introduce() {
+    print(
+        "I am $name, I am $age years old, My favourite animal is the $animal, and i have spent $_wasted dollars on the zoo.");
+  }
+
+  // Method: study
+  void study() {
+    print("$name is learning about animals in school");
+  }
+}
+
+// Class Zookeper (inherits from Person)
+class Zookeper extends Person {
+  String subject;
+  int experience; // Years of experience
+
+  // Constructor
+  Zookeper(String name, int age, this.subject, this.experience)
+      : super(name, age);
+
+  // Overriding introduce method
+  @override
+  void introduce() {
+    print(
+        "I am $name, I am $age years old, I train $subject, and I have $experience years of experience.");
+  }
+
+  // Method: teach
+  void teach() {
+    print("$name is training $subject.");
+  }
+}
+
+// Class ZooOwner (inherits from Person)
+class ZooOwner extends Person {
+  int yearsLeading;
+
+  // Constructor
+  ZooOwner(String name, int age, this.yearsLeading) : super(name, age);
+
+  // Overriding introduce method
+  @override
+  void introduce() {
+    print(
+        "I am the zoo owner $name, I am $age years old, and I have been leading the zoo for $yearsLeading years.");
+  }
+
+  // Method: lead
+  void lead() {
+    print("Zoo owner $name is overseeing the zoo.");
+  }
+}
+
+// Main program
+void main() {
+  // Creating objects
+  Visitor Visitor1 = Visitor("Carlos", 14, "tiger", 120);
+  Visitor Visitor2 = Visitor("Anna", 16, "penguin", 200);
+  Zookeper zookeper = Zookeper("Mr. Lopez", 35, "hippos", 10);
+  ZooOwner zooOwner = ZooOwner("Mrs. Gonzalez", 50, 15);
+
+  // Using methods
+  Visitor1.introduce();
+  Visitor1.study();
+  Visitor1.spent = 160; // Using the setter
+  print(" ${Visitor1.name} now has spent ${Visitor1.spent} dollars");
+
+  print("");
+
+  Visitor2.introduce();
+  Visitor2.study();
+
+  print("");
+
+  zookeper.introduce();
+  zookeper.teach();
+
+  print("");
+
+  zooOwner.introduce();
+  zooOwner.lead();
+}
