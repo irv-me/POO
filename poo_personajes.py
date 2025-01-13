@@ -41,15 +41,22 @@ class Personaje:
 
     def atacar(self,enemigo):
         daño = self.dañar(enemigo)
-        enemigo.vida = enemigo.vida - daño
-        print(self.nombre, "ha realizado",daño,"de daño a",enemigo)
-        print("vida de",enemigo.nombre,enemigo.vida)
+        if daño > 0:
+            enemigo.vida = enemigo.vida - daño
+            if enemigo.vida > 0:
+                print(self.nombre, "ha realizado",daño,"de daño a",enemigo.nombre)
+                print("vida de",enemigo.nombre,enemigo.vida)
+            else:
+                enemigo.morir()
+        else:
+            print(self.nombre, "no logro hacerle daño a",enemigo.nombre)
+            print("vida de",enemigo.nombre,enemigo.vida)
 
 
 
 
-miPersonaje = Personaje("EstebanDido",100,50, 45, 100)
-miEnemigo = Personaje("Angel",70,100,40,100)
+miPersonaje = Personaje("EstebanDido",45,50, 1, 100)
+miEnemigo = Personaje("Angel",100,100,70,100)
 
 miPersonaje.atacar(miEnemigo)
 miEnemigo.atacar(miPersonaje)
