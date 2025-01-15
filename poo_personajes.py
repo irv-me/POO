@@ -52,8 +52,15 @@ class Personaje:
             print(self.nombre, "no logro hacerle daño a",enemigo.nombre)
             print("vida de",enemigo.nombre,enemigo.vida)
 
+class Guerrero(Personaje):
+    #SObrescribir el constructor
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.espada = espada
 
+arturoSuarez = Guerrero("Arturo Suárez",12,3000,2,100,0.5)
 
+print(arturoSuarez.espada)
 
 miPersonaje = Personaje("EstebanDido",45,50, 1, 100)
 miEnemigo = Personaje("Angel",100,100,70,100)
