@@ -57,34 +57,70 @@ class Guerrero(Personaje):
     def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
         super().__init__(nombre, fuerza, inteligencia, defensa, vida)
         self.espada = espada
+    #sobrescribir impresion de atributos
 
-arturoSuarez = Guerrero("Arturo Suárez",12,3000,2,100,0.5)
+    def imprimir_atributos(self):
+         super().imprimir_atributos()
+         print("-Espada:", self.espada)
 
-print(arturoSuarez.espada)
+    #sobreescribir el calculo del daño
+    def dañar(self, enemigo):
+        return self.fuerza*self.espada - enemigo.defensa
 
-miPersonaje = Personaje("EstebanDido",45,50, 1, 100)
+    def escoger_navaja(self):
+        opcion = int(input("Escoge la navaja:\n(1) Navaja suiza, daño 10.\n(2) Navaja pioja, daño 6.\n"))
+        if(opcion == 1):
+            self.espada = 10
+        elif(opcion == 2):
+            self.espada = 6
+        else:
+            print("valor invalido")
+            self.escoger_navaja()
+
+class Mago(Personaje):
+    #SObrescribir el constructor
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, libro):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.libro = libro
+    #sobrescribir impresion de atributos
+
+    def imprimir_atributos(self):
+         super().imprimir_atributos()
+         print("-libro:", self.libro)
+
+    #sobreescribir el calculo del daño
+    def dañar(self, enemigo):
+        return self.inteligencia*self.libro - enemigo.defensa
+
+    def escoger_navaja(self):
+        opcion = int(input("Escoge el libro:\n(1) El principito, daño 10.\n(2) Crepusculo, daño 6.\n"))
+        if(opcion == 1):
+            self.libro = 10
+        elif(opcion == 2):
+            self.libro = 6
+        else:
+            print("valor invalido")
+            self.escoger_navaja()
+
+
+
+#GAME CREAR
+# arturoSuarez = Guerrero("Arturo Suárez",12,3000,2,100,0.5)
+# arturoSuarez.escoger_navaja()
+# gandalf = Mago("Gandalf",12,3000,2,100,0.5)
+# gandalf.escoger_navaja()
+# miPersonaje = Personaje("EstebanDido",45,50, 1, 100)
+# miEnemigo = Personaje("Angel",100,100,70,100)
+
+
+
+arturoSuarez = Guerrero("Arturo Suárez",20,15,10,100,5)
+gandalf = Mago("Gandalf",20,15,10,100,5)
+miPersonaje = Personaje("EstebanDido",20,15,10,100)
 miEnemigo = Personaje("Angel",100,100,70,100)
 
-miPersonaje.atacar(miEnemigo)
-miEnemigo.atacar(miPersonaje)
-# imprimir_atributos(miPersonaje)
-# subir_nivel(miPersonaje,10,10,10)
-# imprimir_atributos(miPersonaje)
-# print(esta_vivo(miPersonaje))
-# morir(miPersonaje)
-# print(esta_vivo(miPersonaje))
+miPersonaje.atacar(arturoSuarez)
+arturoSuarez.atacar(gandalf)
+gandalf.atacar(miPersonaje)
 
-#Modificar valores de los atributos
 
-#Esto es muy similar a como funciona en Roblox (Lua)
-# miPersonaje.nombre = "EstebanDido"
-# miPersonaje.fuerza = 300
-# miPersonaje.inteligencia = -2
-# miPersonaje.defensa = 30
-# miPersonaje.vida = 2
-
-# print("El nombre de mi personaje es ", miPersonaje.nombre)
-# print("La fuerza de mi personaje es ", miPersonaje.fuerza)
-# print("La inteligencia de mi personaje es ", miPersonaje.inteligencia)
-# print("La defensa de mi personaje es ", miPersonaje.defensa)
-# print("La vida de mi personaje es ", miPersonaje.vida)
